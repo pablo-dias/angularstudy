@@ -1,3 +1,5 @@
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +14,10 @@ const routes: Routes = [
   {
     path: "products",
     component: ProductCrudComponent
+  },
+  {
+    path: "products/create",
+    component: ProductCreateComponent
   }
 ];
 
@@ -19,6 +25,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
+    BrowserModule,
     RouterModule.forRoot(routes)
   ]
 })
