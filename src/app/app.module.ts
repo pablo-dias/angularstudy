@@ -14,6 +14,9 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { ProductReadComponent } from './components/product/product-read/product-read.component';
+import { ProductRead3Component } from './components/product/product-read3/product-read3.component';
+import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
+import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -32,7 +35,6 @@ import { ForDirective } from './directives/for.directive';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData }from '@angular/common';
-import { ProductRead3Component } from './components/product/product-read3/product-read3.component';
 
 registerLocaleData(localePt);
 
@@ -48,7 +50,9 @@ registerLocaleData(localePt);
     ForDirective,
     ProductCreateComponent,
     ProductReadComponent,
-    ProductRead3Component
+    ProductRead3Component,
+    ProductUpdateComponent,
+    ProductDeleteComponent
   ],
   imports: [
     BrowserModule,
