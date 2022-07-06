@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,6 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { ProductReadComponent } from './components/product/product-read/product-read.component';
-import { ProductRead2Component } from './components/product/product-read2/product-read2.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -31,6 +30,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { RedDirective } from './directives/red.directive';
 import { ForDirective } from './directives/for.directive';
 
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData }from '@angular/common';
+import { ProductRead3Component } from './components/product/product-read3/product-read3.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -44,7 +48,7 @@ import { ForDirective } from './directives/for.directive';
     ForDirective,
     ProductCreateComponent,
     ProductReadComponent,
-    ProductRead2Component
+    ProductRead3Component
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,10 @@ import { ForDirective } from './directives/for.directive';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'pt-BR'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

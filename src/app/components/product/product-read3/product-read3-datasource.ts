@@ -1,46 +1,32 @@
+import { Product } from './../product-model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface ProductRead2Item {
-  name: string;
-  id: number;
-}
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ProductRead2Item[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+const EXAMPLE_DATA: Product[] = [
+  {id: 1, name: 'Hydrogen', price: 1.0079},
+  {id: 2, name: 'Helium', price: 4.0026},
+  {id: 3, name: 'Lithium', price: 6.941},
+  {id: 4, name: 'Beryllium', price: 9.0122},
+  {id: 5, name: 'Boron', price: 10.811},
+  {id: 6, name: 'Carbon', price: 12.0107},
+  {id: 7, name: 'Nitrogen', price: 14.0067},
+  {id: 8, name: 'Oxygen', price: 15.9994},
+  {id: 9, name: 'Fluorine', price: 18.9984},
+  {id: 10, name: 'Neon', price: 20.1797},
 ];
 
 /**
- * Data source for the ProductRead2 view. This class should
+ * Data source for the ProductRead3 view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ProductRead2DataSource extends DataSource<ProductRead2Item> {
-  data: ProductRead2Item[] = EXAMPLE_DATA;
+export class ProductRead3DataSource extends DataSource<Product> {
+  data: Product[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -53,7 +39,7 @@ export class ProductRead2DataSource extends DataSource<ProductRead2Item> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ProductRead2Item[]> {
+  connect(): Observable<Product[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -76,7 +62,7 @@ export class ProductRead2DataSource extends DataSource<ProductRead2Item> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ProductRead2Item[]): ProductRead2Item[] {
+  private getPagedData(data: Product[]): Product[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -89,7 +75,7 @@ export class ProductRead2DataSource extends DataSource<ProductRead2Item> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ProductRead2Item[]): ProductRead2Item[] {
+  private getSortedData(data: Product[]): Product[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -97,8 +83,9 @@ export class ProductRead2DataSource extends DataSource<ProductRead2Item> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        // case 'name': return compare(a.name, b.name, isAsc);
+        // case 'id': return compare(+a.id, +b.id, isAsc);
+        // case 'price': return compare(+a.price, +b.price, isAsc);
         default: return 0;
       }
     });
